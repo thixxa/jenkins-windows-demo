@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('test-dockerhubpassword')
-        IMAGE_NAME = "thixxa/jenkins-windows-demo"
+        IMAGE_NAME = "thisandaprasanjana/jenkins-windows-demo"
     }
 
     stages {

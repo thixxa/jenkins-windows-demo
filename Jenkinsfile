@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        DOCKERHUB_CREDENTIALS = credentials('test-dockerhubpassword')
         IMAGE_NAME = "thixxa/jenkins-windows-demo"
     }
 

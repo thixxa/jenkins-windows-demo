@@ -28,15 +28,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // Use environment variable expansion on Windows
-                bat "docker build -t %IMAGE_NAME% ."
+                bat "docker build -t ${env.IMAGE_NAME} ."
+
             }
         }
 
         stage('Docker Login') {
             steps {
-                bat """
-                echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin
-                """
+                bat "echo ${env.DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${env.DOCKERHUB_CREDENTIALS_USR} --password-stdin"
+
             }
         }
 
@@ -51,7 +51,7 @@ pipeline {
                 bat """
                 docker stop jenkins-windows-demo || exit 0
                 docker rm jenkins-windows-demo || exit 0
-                docker run -d -p 3000:3000 --name jenkins-windows-demo %IMAGE_NAME%
+                docker run -d -p 3000:3000 --name jenkins-windows-demo ${env.IMAGE_NAME}
                 """
             }
         }
